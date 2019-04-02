@@ -4,25 +4,30 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class Configs {
-    private static final String PROPERTIES_FILENAME = "/configs.properties";
-    private static Properties properties;
+    private static Properties propertiesAuth;
+    private static Properties propertiesURL;
 
-    private Configs() {
+    private Configs() { }
+
+    public static String getAuthValueByKey(String key) {
+        if (propertiesAuth == null) {
+            try {
+                propertiesAuth = new Properties();
+                propertiesAuth.load(Configs.class.getResourceAsStream("/userauthentication.properties"));
+            } catch (IOException e) {
+            }
+        }
+        return propertiesAuth.get(key).toString();
     }
 
-    public static String getValueByKey(String key) {
-        if (properties == null) {
-            loadProperties();
+    public static String getURLValueByKey(String key) {
+        if (propertiesURL == null) {
+            try {
+                propertiesURL = new Properties();
+                propertiesURL.load(Configs.class.getResourceAsStream("/trellourls.properties"));
+            } catch (IOException e) {
+            }
         }
-        return properties.get(key).toString();
-    }
-
-    private static Properties loadProperties() {
-        try {
-            properties = new Properties();
-            properties.load(Configs.class.getResourceAsStream(PROPERTIES_FILENAME));
-        } catch (IOException e) {
-        }
-        return properties;
+        return propertiesURL.get(key).toString();
     }
 }
