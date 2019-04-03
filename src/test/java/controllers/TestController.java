@@ -1,8 +1,9 @@
 package controllers;
 
-import helpers.URLBuilder;
+import helpers.TrelloURLBuilder;
 import net.thucydides.core.steps.ScenarioSteps;
 import utils.Configs;
+import utils.URLBuilder;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -12,6 +13,18 @@ import java.util.Map;
 public class TestController extends ScenarioSteps{
     private static final String KEY = Configs.getAuthValueByKey("key");
     private static final String TOKEN = Configs.getAuthValueByKey("token");
+
+    private static final String BASEURL = Configs.getURLValueByKey("baseURL");
+    private static final String tokensURL = Configs.getURLValueByKey("tokensURL");
+    private static final String membersURL = Configs.getURLValueByKey("membersURL");
+    private static final String boardsURL = Configs.getURLValueByKey("boardsURL");
+    private static final String listsURL = Configs.getURLValueByKey("listsURL");
+    private static final String cardsURL = Configs.getURLValueByKey("cardsURL");
+    private static final String actionsURL = Configs.getURLValueByKey("actionsURL");
+    private static final String commentsURL = Configs.getURLValueByKey("commentsURL");
+    private static final String posURL = Configs.getURLValueByKey("posURL");
+
+    private TrelloURLBuilder trelloURLBuilder = new TrelloURLBuilder();
     private URLBuilder urlBuilder = new URLBuilder();
 
     private Map<String, String> putIdList(Map<String, String> params, String idList){
@@ -85,54 +98,54 @@ public class TestController extends ScenarioSteps{
     }
 
     public URL getUserIdUrl() throws MalformedURLException {
-        return new URL(urlBuilder.addTokensURL().addToken(TOKEN).build());
+        return urlBuilder.addBaseURL(BASEURL).addToPath(tokensURL).addToPath(TOKEN).build();
     }
 
     public URL getBoardsOfUserUrl(String idUser) throws MalformedURLException {
-        return new URL(urlBuilder.addMembersURL().addIdUser(idUser).addBoardsURL().build());
+        return urlBuilder.addBaseURL(BASEURL).addToPath(membersURL).addToPath(idUser).addToPath(boardsURL).build();
     }
 
     public URL getMembersOfBoardsUrl(String idBoard) throws MalformedURLException {
-        return new URL(urlBuilder.addBoardsURL().addIdBoard(idBoard).addMembersURL().build());
+        return urlBuilder.addBaseURL(BASEURL).addToPath(boardsURL).addToPath(idBoard).addToPath(membersURL).build();
     }
 
     public URL getListsOfBoardUrl(String idBoard) throws MalformedURLException {
-        return new URL(urlBuilder.addBoardsURL().addIdBoard(idBoard).addListsURL().build());
+        return urlBuilder.addBaseURL(BASEURL).addToPath(boardsURL).addToPath(idBoard).addToPath(listsURL).build();
     }
 
     public URL getCreateCardUrl() throws MalformedURLException {
-        return new URL(urlBuilder.addCardsURL().build());
+        return urlBuilder.addBaseURL(BASEURL).addToPath(cardsURL).build();
     }
 
     public URL getCardsOnListUrl(String idList) throws MalformedURLException {
-        return new URL(urlBuilder.addListsURL().addIdList(idList).addCardsURL().build());
+        return urlBuilder.addBaseURL(BASEURL).addToPath(listsURL).addToPath(idList).addToPath(cardsURL).build();
     }
 
     public URL getAddMemberToCardUrl(String idCard) throws MalformedURLException {
-        return new URL(urlBuilder.addCardsURL().addIdCard(idCard).addIdMembersURL().build());
+        return urlBuilder.addBaseURL(BASEURL).addToPath(cardsURL).addToPath(idCard).addToPath(membersURL).build();
     }
 
     public URL getAddCommentToCardUrl(String idCard) throws MalformedURLException {
-        return new URL(urlBuilder.addCardsURL().addIdCard(idCard).addActionsURL().addCommentsURL().build());
+        return urlBuilder.addBaseURL(BASEURL).addToPath(cardsURL).addToPath(idCard).addToPath(actionsURL).addToPath(commentsURL).build();
     }
 
     public URL getInfoCardUrl(String idCard) throws MalformedURLException {
-        return new URL(urlBuilder.addCardsURL().addIdCard(idCard).build());
+        return urlBuilder.addBaseURL(BASEURL).addToPath(cardsURL).addToPath(idCard).build();
     }
 
     public URL getDeleteCardUrl(String idCard) throws MalformedURLException {
-        return new URL(urlBuilder.addCardsURL().addIdCard(idCard).build());
+        return urlBuilder.addBaseURL(BASEURL).addToPath(cardsURL).addToPath(idCard).build();
     }
 
     public URL getCreateListUrl() throws MalformedURLException {
-        return new URL(urlBuilder.addListsURL().build());
+        return urlBuilder.addBaseURL(BASEURL).addToPath(listsURL).build();
     }
 
     public URL getListPos(String idList) throws MalformedURLException {
-        return new URL(urlBuilder.addListsURL().addIdList(idList).addPosURL().build());
+        return urlBuilder.addBaseURL(BASEURL).addToPath(listsURL).addToPath(idList).addToPath(posURL).build();
     }
 
     public URL getCardActionsURL(String idCard) throws MalformedURLException {
-        return new URL(urlBuilder.addCardsURL().addIdCard(idCard).addActionsURL().build());
+        return urlBuilder.addBaseURL(BASEURL).addToPath(cardsURL).addToPath(idCard).addToPath(actionsURL).build();
     }
 }

@@ -2,7 +2,6 @@ package steps;
 
 import com.jayway.jsonpath.JsonPath;
 import controllers.TestController;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -122,7 +121,6 @@ public class PostCardSteps {
         String responseBody = response.getBody().asString();
         String expectedComment = JsonPath.read(responseBody, "$.data.text");
         response = CardFunctions.requestActionsCard(testController, requestSpecification, idCard);
-        System.out.println(response.getBody().asString());
         String comments = CardFunctions.getCardComments(response).toString();
         Assert.assertThat("The status of the request is not OK (200)", response.getStatusCode(), Matchers.equalTo(200));
         Assert.assertThat("The new comment is not added to the card",comments, Matchers.containsString(expectedComment));

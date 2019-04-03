@@ -2,79 +2,79 @@ package helpers;
 
 import utils.Configs;
 
-public class URLBuilder {
+public class TrelloURLBuilder {
     private String URL;
 
-    public URLBuilder(){
+    public TrelloURLBuilder() {
         URL = Configs.getURLValueByKey("baseURL");
     }
 
-    public URLBuilder addTokensURL(){
+    public TrelloURLBuilder addTokensURL() {
         URL = URL + "/" + Configs.getURLValueByKey("tokensURL");
         return this;
     }
 
-    public URLBuilder addMembersURL(){
+    public TrelloURLBuilder addMembersURL() {
         URL = URL + "/" + Configs.getURLValueByKey("membersURL");
         return this;
     }
 
-    public URLBuilder addBoardsURL(){
+    public TrelloURLBuilder addBoardsURL() {
         URL = URL + "/" + Configs.getURLValueByKey("boardsURL");
         return this;
     }
 
-    public URLBuilder addListsURL(){
+    public TrelloURLBuilder addListsURL() {
         URL = URL + "/" + Configs.getURLValueByKey("listsURL");
         return this;
     }
 
-    public URLBuilder addCardsURL(){
+    public TrelloURLBuilder addCardsURL() {
         URL = URL + "/" + Configs.getURLValueByKey("cardsURL");
         return this;
     }
 
-    public URLBuilder addIdMembersURL(){
+    public TrelloURLBuilder addIdMembersURL() {
         URL = URL + "/" + Configs.getURLValueByKey("idMembersURL");
         return this;
     }
 
-    public URLBuilder addActionsURL(){
+    public TrelloURLBuilder addActionsURL() {
         URL = URL + "/" + Configs.getURLValueByKey("actionsURL");
         return this;
     }
 
-    public URLBuilder addCommentsURL(){
+    public TrelloURLBuilder addCommentsURL() {
         URL = URL + "/" + Configs.getURLValueByKey("commentsURL");
         return this;
     }
 
-    public URLBuilder addPosURL(){
+    public TrelloURLBuilder addPosURL() {
         URL = URL + "/" + Configs.getURLValueByKey("posURL");
         return this;
     }
 
-    public URLBuilder addToken(String TOKEN){
+    public TrelloURLBuilder addToken(String TOKEN) {
         URL = URL + "/" + TOKEN;
         return this;
     }
 
-    public URLBuilder addIdUser(String idUser){
+    public TrelloURLBuilder addIdUser(String idUser) {
         URL = URL + "/" + idUser;
         return this;
     }
 
-    public URLBuilder addIdBoard(String idBoard){
+    public TrelloURLBuilder addIdBoard(String idBoard) {
         URL = URL + "/" + idBoard;
         return this;
     }
 
-    public URLBuilder addIdList(String idList){
+    public TrelloURLBuilder addIdList(String idList) {
         URL = URL + "/" + idList;
         return this;
     }
 
-    public URLBuilder addIdCard(String idCard){
+    public TrelloURLBuilder addIdCard(String idCard) {
         URL = URL + "/" + idCard;
         return this;
     }
